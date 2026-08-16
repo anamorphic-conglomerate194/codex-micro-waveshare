@@ -24,10 +24,17 @@ $script:Root = Split-Path -Parent $MyInvocation.MyCommand.Path
 # --- 1. 定位固件文件 --------------------------------------------------------
 if (-not $Bin) {
     $Bin = Join-Path $script:Root ".pio\build\m5stack-stopwatch\firmware.bin"
+    if (-not (Test-Path $Bin)) {
+        # Release 场景:脚本和固件在同一个下载文件夹
+        $releaseBin = Get-ChildItem $script:Root -Filter "codex-micro-waveshare*.bin" -ErrorAction SilentlyContinue |
+            Sort-Object LastWriteTime -Descending | Select-Object -First 1
+        if ($releaseBin) { $Bin = $releaseBin.FullName }
+    }
 }
 if (-not (Test-Path $Bin)) {
     Write-Host "固件不存在: $Bin" -ForegroundColor Red
-    Write-Host "请先构建: pio run -e m5stack-stopwatch" -ForegroundColor Yellow
+    Write-Host "用法: 指定 -Bin <固件路径>,或把 flash_codex.ps1 和固件放同一文件夹。" -ForegroundColor Yellow
+    Write-Host "示例: powershell -ExecutionPolicy Bypass -File flash_codex.ps1 -Bin .\codex-micro-waveshare-v1.0.0.bin" -ForegroundColor Yellow
     exit 1
 }
 $BuildDir = Split-Path -Parent $Bin
