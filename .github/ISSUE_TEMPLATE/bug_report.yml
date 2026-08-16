@@ -1,0 +1,48 @@
+name: Bug report
+description: Report a reproducible problem with the C152 firmware or companion.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: checkboxes
+    attributes:
+      label: Safety and privacy
+      options:
+        - label: I am using an M5Stack StopWatch Dev Kit C152.
+          required: true
+        - label: I removed device IDs, UUIDs, serial numbers, usernames, account data, task text, and private audio.
+          required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: macOS, ChatGPT Desktop, PlatformIO, and firmware revision.
+    validations:
+      required: true
+  - type: dropdown
+    id: validation
+    attributes:
+      label: Where was this observed?
+      options:
+        - Physical C152
+        - Build or CI only
+        - Native UI preview
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true

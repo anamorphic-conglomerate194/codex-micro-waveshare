@@ -1,0 +1,70 @@
+.pio/
+.pio-core/
+.vscode/
+.DS_Store
+.build/
+*.dSYM/
+__pycache__/
+*.py[cod]
+
+# CODEX_STOPWATCH_THIRD_PARTY (Waveshare Windows port):
+# Build metadata embeds absolute local paths; never publish it.
+compile_commands.json
+# Windows companion local-debug probes hardcode the sandbox's install dirs.
+companion-win/scripts/
+companion-win/src/__pycache__/
+# macOS-only parts of the upstream project (C152 Swift companion, optional
+# USB-mic experiment, Swift debug helpers) stay local on disk but are not
+# part of this Waveshare/Windows port.
+usb-mic/
+companion/
+scripts/*.swift
+scripts/usb_mic_validate.py
+scripts/serial_probe.py
+scripts/patch_m5unified_mic_dc_servo.py
+docs/BLE_AUDIO_HOST_VALIDATION.md
+docs/MAC_AUDIO_BRIDGE.md
+docs/MAC_AUDIO_DOWNLINK.md
+docs/MIC_CAPTURE_NOTES.md
+docs/USB_MIC_PLAN.md
+# C152/macOS-only docs; PORTING_WAVESHARE.md is the port's own doc.
+docs/ARCHITECTURE.md
+docs/COMPANION_PROTOCOL.md
+docs/PORTING.md
+docs/TECHNICAL.md
+docs/TECHNICAL.zh-CN.md
+
+# Local firmware and UI artifacts. Keep only the curated public preview.
+artifacts/*
+!artifacts/dashboard-preview-v2-round.png
+
+# The companion is built and wrapped locally so Bluetooth permission, device
+# binding, executable paths, and logs never become repository data.
+companion/.local/
+companion/dist/
+companion/launchd/*.plist
+!companion/launchd/*.plist.example
+
+# Deferred microphone/audio research is intentionally outside the public MVP.
+diagnostics/
+mac-audio-bridge/
+usb-mic-prototype/
+usb-mic/.dummy/
+usb-mic/.pio/
+usb-mic/.pio-core/
+usb-mic/compile_commands.json
+usb-mic/managed_components/
+usb-mic/CMakeLists.txt
+usb-mic/dependencies.lock
+usb-mic/sdkconfig.*
+include/BleMicStreamer.h
+src/BleMicStreamer.cpp
+docs/BLE_AUDIO_HOST_VALIDATION.md
+docs/MAC_AUDIO_BRIDGE.md
+docs/MAC_AUDIO_DOWNLINK.md
+docs/MIC_CAPTURE_NOTES.md
+docs/USB_MIC_PLAN.md
+
+# The HTML sketches were exploratory; the native framebuffer preview is the
+# public rendering reference.
+ui-mock/
